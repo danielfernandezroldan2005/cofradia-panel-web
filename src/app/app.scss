@@ -1,0 +1,16 @@
+.admin-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr; /* 250px for the menu, rest for the information. */
+  min-height: 100vh; /* All the heigh of the screen. */
+  background-color: #f3f4f6; /* Light grey in background. */
+}
+
+.sidebar-area {
+  background-color: #1e293b; /* A seablue. */
+  color: white;
+}
+
+.content-area {
+  padding: 2rem;
+  overflow-y: auto;
+}
