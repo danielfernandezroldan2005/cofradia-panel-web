@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [MatButtonModule], // Button in the initial screen.
+  imports: [MatButtonModule, RouterModule], // Imports for the component.
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })
