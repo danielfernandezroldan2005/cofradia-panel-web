@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>Add New Member</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="hermanoForm" class="form-container">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="nombre" placeholder="Enter name">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Surname</mat-label>
+      <input matInput formControlName="apellidos" placeholder="Enter surname">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Join Date</mat-label>
+      <input matInput type="date" formControlName="fechaAlta">
+    </mat-form-field>
+
+    <mat-checkbox formControlName="cuotaAlDia" color="primary">
+      Up to date with fees
+    </mat-checkbox>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-flat-button color="primary" [disabled]="hermanoForm.invalid" (click)="onSubmit()">
+    Save
+  </button>
+</mat-dialog-actions>
