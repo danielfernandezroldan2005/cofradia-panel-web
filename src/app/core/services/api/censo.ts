@@ -11,7 +11,6 @@ export class CensoService {
   private http = inject(HttpClient);
 
   // Define the base URL of your Java Spring Boot backend
-  // (We will move this to an environment file later for better practices)
   private apiUrl = 'http://localhost:8080/api/v1/hermanos';
 
   /**
