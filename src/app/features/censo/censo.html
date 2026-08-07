@@ -48,4 +48,7 @@
     <mat-label>Buscar por nombre o apellidos...</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Gómez">
   </mat-form-field>
+
+  <!-- Paginator -->
+  <mat-paginator [pageSizeOptions]="[2, 5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
