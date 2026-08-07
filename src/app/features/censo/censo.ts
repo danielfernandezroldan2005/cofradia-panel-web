@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
-// 1. Define data structure that we want to show.
+// Define data structure that we want to show.
 export interface Hermano {
   id: number;
   nombre: string;
@@ -10,7 +12,7 @@ export interface Hermano {
   cuotaAlDia: boolean;
 }
 
-// 2. Create some examples for testing (Mock Data).
+// Create some examples for testing (Mock Data).
 const HERMANOS_DATA: Hermano[] = [
   { id: 1, nombre: 'Antonio', apellidos: 'Pérez García', fechaAlta: '2015-03-12', cuotaAlDia: true },
   { id: 2, nombre: 'María', apellidos: 'Gómez López', fechaAlta: '2018-05-24', cuotaAlDia: false },
@@ -20,15 +22,20 @@ const HERMANOS_DATA: Hermano[] = [
 
 @Component({
   selector: 'app-censo',
-  imports: [MatTableModule],
+  imports: [MatTableModule, MatInputModule, MatFormFieldModule],
   templateUrl: './censo.html',
   styleUrl: './censo.scss',
 })
-
 export class Censo {
-  // 3. Display columns and order.
+  // Display columns and order.
   displayedColumns: string[] = ['id', 'nombre', 'apellidos', 'fechaAlta', 'estado'];
 
-  // 4. Send data.
-  dataSource = HERMANOS_DATA;
+  // Transform simple data in a DataSource of Material.
+  dataSource = new MatTableDataSource(HERMANOS_DATA);
+
+  // Function executed when looking something in the filter bar.
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }

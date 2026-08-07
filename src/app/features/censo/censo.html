@@ -42,4 +42,10 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <!-- Filter bar -->
+  <mat-form-field appearance="outline" class="buscador-hermanos">
+    <mat-label>Buscar por nombre o apellidos...</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Gómez">
+  </mat-form-field>
 </div>
