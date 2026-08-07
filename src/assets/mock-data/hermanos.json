@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "nombre": "Antonio",
+    "apellidos": "Pérez García",
+    "fechaAlta": "2015-03-12",
+    "cuotaAlDia": true
+  },
+  {
+    "id": 2,
+    "nombre": "María",
+    "apellidos": "Gómez López",
+    "fechaAlta": "2018-05-24",
+    "cuotaAlDia": false
+  },
+  {
+    "id": 3,
+    "nombre": "Carlos",
+    "apellidos": "Ruiz Navarro",
+    "fechaAlta": "2020-01-10",
+    "cuotaAlDia": true
+  },
+  {
+    "id": 4,
+    "nombre": "Laura",
+    "apellidos": "Martínez Silva",
+    "fechaAlta": "2022-11-05",
+    "cuotaAlDia": true
+  },
+  {
+    "id": 5,
+    "nombre": "Manuel",
+    "apellidos": "Díaz",
+    "fechaAlta": "2023-02-15",
+    "cuotaAlDia": false
+  }
+]
