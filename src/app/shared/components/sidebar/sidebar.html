@@ -1,1 +1,17 @@
-<p>sidebar works!</p>
+<div class="sidebar-header">
+  <h2>Cofradía 360</h2>
+</div>
+
+<mat-nav-list>
+  <!-- Link to Dashboard -->
+  <a mat-list-item routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+    <mat-icon matListItemIcon>dashboard</mat-icon>
+    <div matListItemTitle>Panel Central</div>
+  </a>
+
+  <!-- Link to Censo -->
+  <a mat-list-item routerLink="/censo" routerLinkActive="active-link">
+    <mat-icon matListItemIcon>people</mat-icon>
+    <div matListItemTitle>Censo de Hermanos</div>
+  </a>
+</mat-nav-list>

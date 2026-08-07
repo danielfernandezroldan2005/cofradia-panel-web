@@ -1,0 +1,35 @@
+.sidebar-header {
+  padding: 2rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+}
+
+mat-nav-list {
+  padding-top: 1rem;
+}
+
+::ng-deep .mat-mdc-list-item-title {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+::ng-deep .mat-mdc-list-item-icon {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.active-link {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-left: 4px solid #fff;
+
+  ::ng-deep .mat-mdc-list-item-title,
+  ::ng-deep .mat-mdc-list-item-icon {
+    color: white !important;
+    font-weight: bold;
+  }
+}
