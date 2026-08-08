@@ -1,10 +1,12 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, inject } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { HermanoForm } from './hermano-form/hermano-form';
+import { CensoService } from '../../core/services/api/censoService';
 
-// Define data structure that we want to show.
 export interface Hermano {
   id: number;
   nombre: string;
@@ -13,51 +15,74 @@ export interface Hermano {
   cuotaAlDia: boolean;
 }
 
-// Create some examples for testing (Mock Data).
-const HERMANOS_DATA: Hermano[] = [
-  { id: 1, nombre: 'Antonio', apellidos: 'Pérez García', fechaAlta: '2015-03-12', cuotaAlDia: true },
-  { id: 2, nombre: 'María', apellidos: 'Gómez López', fechaAlta: '2018-05-24', cuotaAlDia: false },
-  { id: 3, nombre: 'Carlos', apellidos: 'Ruiz Navarro', fechaAlta: '2020-01-10', cuotaAlDia: true },
-  { id: 4, nombre: 'Laura', apellidos: 'Martínez Silva', fechaAlta: '2022-11-05', cuotaAlDia: true },
-];
-
 @Component({
   selector: 'app-censo',
+  standalone: true,
   imports: [MatTableModule, MatInputModule, MatFormFieldModule, MatPaginatorModule],
   templateUrl: './censo.html',
   styleUrl: './censo.scss',
 })
-export class Censo implements AfterViewInit {
-  // Display columns and order.
+export class Censo implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['id', 'nombre', 'apellidos', 'fechaAlta', 'estado'];
 
-  // Transform simple data in a DataSource of Material.
-  dataSource = new MatTableDataSource(HERMANOS_DATA);
+  // Initialize with an empty array. The backend will fill it.
+  dataSource = new MatTableDataSource<Hermano>([]);
 
-  // Capture HTML paginator.
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  // When view is charged, we vinculate the paginator to the table.
+  // Dependency Injections
+  private censoService = inject(CensoService);
+  private dialog = inject(MatDialog);
+
+  // Executed exactly when the component is created
+  ngOnInit(): void {
+    this.loadHermanos();
+  }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-
-    // We create a Personalized Filter by first and last names.
     this.dataSource.filterPredicate = (data: Hermano, filter: string) => {
-      // Join first and last names in a string in lower case.
       const textoFila = (data.nombre + ' ' + data.apellidos).toLowerCase();
-      // Check user string and compare with our data.
       return textoFila.includes(filter);
     };
   }
 
-  // Function executed when looking something in the filter bar.
+  /**
+   * Fetches data from the backend and updates the table.
+   */
+  loadHermanos(): void {
+    this.censoService.getAllHermanos().subscribe({
+      next: (data) => {
+        this.dataSource.data = data; // Inject real backend data into the table
+      },
+      error: (err) => {
+        console.error('Error loading members from backend:', err);
+      },
+    });
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    // If we are looking for something, we return the paginator to the first page.
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  /**
+   * Opens the dialog to add a new member.
+   */
+  openAddDialog(): void {
+    const dialogRef = this.dialog.open(HermanoForm, {
+      width: '400px',
+      disableClose: true,
+    });
+
+    dialogRef.afterClosed().subscribe((success: boolean) => {
+      if (success) {
+        // If the form was saved correctly, we ask the backend for the updated list
+        this.loadHermanos();
+      }
+    });
   }
 }

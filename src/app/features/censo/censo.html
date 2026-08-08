@@ -2,6 +2,13 @@
   <h2>Censo de Hermanos</h2>
   <p>Listado oficial de miembros de la cofradía.</p>
 
+  <!-- Action bar above the table -->
+  <div class="action-bar" style="margin-bottom: 16px; display: flex; justify-content: flex-end;">
+    <button mat-flat-button color="primary" (click)="openAddDialog()">
+      Add New Member
+    </button>
+  </div>
+
   <!-- mat-elevation-z8 gives shadow effect -->
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
