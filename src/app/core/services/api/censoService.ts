@@ -23,4 +23,12 @@ export class CensoService {
   addHermano(hermano: Omit<Hermano, 'id'>): Observable<Hermano> {
     return this.http.post<Hermano>(this.apiUrl, hermano);
   }
+
+  /**
+   * Sends a DELETE request to remove a member by their ID.
+   * @param id The unique identifier of the member.
+   */
+  deleteHermano(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 }

@@ -6,6 +6,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { HermanoForm } from './hermano-form/hermano-form';
 import { CensoService } from '../../core/services/api/censoService';
+import { MatButtonModule } from '@angular/material/button';
 
 export interface Hermano {
   id: number;
@@ -18,12 +19,18 @@ export interface Hermano {
 @Component({
   selector: 'app-censo',
   standalone: true,
-  imports: [MatTableModule, MatInputModule, MatFormFieldModule, MatPaginatorModule],
+  imports: [
+    MatTableModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatButtonModule,
+  ],
   templateUrl: './censo.html',
   styleUrl: './censo.scss',
 })
 export class Censo implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['id', 'nombre', 'apellidos', 'fechaAlta', 'estado'];
+  displayedColumns: string[] = ['id', 'nombre', 'apellidos', 'fechaAlta', 'estado', 'acciones'];
 
   // Initialize with an empty array. The backend will fill it.
   dataSource = new MatTableDataSource<Hermano>([]);
@@ -84,5 +91,24 @@ export class Censo implements OnInit, AfterViewInit {
         this.loadHermanos();
       }
     });
+  }
+
+  /**
+   * Deletes a member after asking for confirmation, then reloads the table.
+   * @param id The ID of the member to delete.
+   */
+  deleteHermano(id: number): void {
+    // A simple native browser confirmation dialog
+    if (confirm('Are you sure you want to delete this member?')) {
+      this.censoService.deleteHermano(id).subscribe({
+        next: () => {
+          console.log(`Member with ID ${id} deleted successfully.`);
+          this.loadHermanos(); // Reload the table instantly
+        },
+        error: (err) => {
+          console.error('Error deleting member:', err);
+        },
+      });
+    }
   }
 }
