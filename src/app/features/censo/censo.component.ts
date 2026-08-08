@@ -4,9 +4,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
-import { HermanoForm } from './hermano-form/hermano-form';
-import { CensoService } from '../../core/services/api/censoService';
+import { HermanoFormComponent } from './hermano-form/hermano-form.component';
+import { CensoService } from '../../core/services/api/censo.service';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 export interface Hermano {
   id: number;
@@ -25,11 +27,13 @@ export interface Hermano {
     MatFormFieldModule,
     MatPaginatorModule,
     MatButtonModule,
+    MatCardModule,
+    MatIconModule,
   ],
-  templateUrl: './censo.html',
-  styleUrl: './censo.scss',
+  templateUrl: './censo.component.html',
+  styleUrl: './censo.component.scss',
 })
-export class Censo implements OnInit, AfterViewInit {
+export class CensoComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['id', 'nombre', 'apellidos', 'fechaAlta', 'estado', 'acciones'];
 
   // Initialize with an empty array. The backend will fill it.
@@ -80,7 +84,7 @@ export class Censo implements OnInit, AfterViewInit {
    * Opens the dialog to add a new member.
    */
   openAddDialog(): void {
-    const dialogRef = this.dialog.open(HermanoForm, {
+    const dialogRef = this.dialog.open(HermanoFormComponent, {
       width: '400px',
       disableClose: true,
     });
@@ -117,7 +121,7 @@ export class Censo implements OnInit, AfterViewInit {
    * Passes the selected member's data to the dialog.
    */
   openEditDialog(hermano: Hermano): void {
-    const dialogRef = this.dialog.open(HermanoForm, {
+    const dialogRef = this.dialog.open(HermanoFormComponent, {
       width: '400px',
       disableClose: true,
       data: hermano, // Send Data to Modal.

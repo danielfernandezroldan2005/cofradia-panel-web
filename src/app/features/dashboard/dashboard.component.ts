@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
   selector: 'app-dashboard',
   standalone: true,
   imports: [MatButtonModule, RouterModule], // Imports for the component.
-  templateUrl: './dashboard.html',
-  styleUrl: './dashboard.scss',
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.scss',
 })
-export class Dashboard {}
+export class DashboardComponent {}

@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Hermano } from '../../../features/censo/censo';
+import { Hermano } from '../../../features/censo/censo.component';
 
 @Injectable({
   providedIn: 'root',

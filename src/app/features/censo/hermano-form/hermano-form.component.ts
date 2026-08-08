@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { CensoService } from '../../../core/services/api/censoService';
+import { CensoService } from '../../../core/services/api/censo.service';
 
 @Component({
   selector: 'app-hermano-form',
@@ -20,12 +20,12 @@ import { CensoService } from '../../../core/services/api/censoService';
     MatButtonModule,
     MatCheckboxModule,
   ],
-  templateUrl: './hermano-form.html',
-  styleUrl: './hermano-form.scss',
+  templateUrl: './hermano-form.component.html',
+  styleUrl: './hermano-form.component.scss',
 })
-export class HermanoForm {
+export class HermanoFormComponent {
   private fb = inject(FormBuilder);
-  private dialogRef = inject(MatDialogRef<HermanoForm>);
+  private dialogRef = inject(MatDialogRef<HermanoFormComponent>);
   private censoService = inject(CensoService);
 
   // DATA INJECTION: Angular injects the member data here if opened from the "Edit" button

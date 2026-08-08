@@ -1,0 +1,79 @@
+<div class="censo-container">
+  <h2>CensoComponent de Hermanos</h2>
+  <p>Listado oficial de miembros de la cofradía.</p>
+
+  <mat-card class="mat-elevation-z4">
+    <mat-card-content>
+      <!-- Header row containing Search bar and "Add New Member" button -->
+      <div class="table-header">
+        <mat-form-field appearance="outline" class="buscador-hermanos">
+          <mat-label>Buscar por nombre o apellidos...</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Gómez">
+        </mat-form-field>
+
+        <button mat-flat-button color="primary" (click)="openAddDialog()">
+          Add New Member
+        </button>
+      </div>
+
+      <table mat-table [dataSource]="dataSource">
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- Nombre Column -->
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+        </ng-container>
+
+        <!-- Apellidos Column -->
+        <ng-container matColumnDef="apellidos">
+          <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+          <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
+        </ng-container>
+
+        <!-- Fecha Alta Column -->
+        <ng-container matColumnDef="fechaAlta">
+          <th mat-header-cell *matHeaderCellDef> Fecha de Alta </th>
+          <td mat-cell *matCellDef="let element"> {{element.fechaAlta}} </td>
+        </ng-container>
+
+        <!-- Estado Cuota Column -->
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef> Estado Cuota </th>
+          <td mat-cell *matCellDef="let element">
+            <!-- Showing friendly text. -->
+            {{element.cuotaAlDia ? 'Al día' : 'Pendiente'}}
+          </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let element" style="display: flex; gap: 8px; align-items: center;">
+
+            <button mat-icon-button color="primary" (click)="openEditDialog(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn" (click)="deleteHermano(element.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+
+          </td>
+        </ng-container>
+
+        <!-- Rendering rows (Angular manages the loop automatically) -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <!-- Paginator -->
+      <mat-paginator [pageSizeOptions]="[2, 5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>
