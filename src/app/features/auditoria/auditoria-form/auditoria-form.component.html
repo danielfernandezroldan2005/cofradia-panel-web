@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Editar Registro de Auditoría' : 'Añadir Registro de Auditoría' }}</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="auditoriaForm" class="form-container">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Entidad Afectada</mat-label>
+      <input matInput formControlName="entidadAfectada" placeholder="Ej. Censo, Inventario">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Operación</mat-label>
+      <mat-select formControlName="operacion">
+        <mat-option value="CREAR">CREAR</mat-option>
+        <mat-option value="MODIFICAR">MODIFICAR</mat-option>
+        <mat-option value="ELIMINAR">ELIMINAR</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Fecha de Operación</mat-label>
+      <input matInput type="date" formControlName="fechaOperacion">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Usuario</mat-label>
+      <input matInput formControlName="usuario" placeholder="Ej. admin_jose">
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-flat-button color="primary" [disabled]="auditoriaForm.invalid" (click)="onSubmit()">
+    Guardar
+  </button>
+</mat-dialog-actions>
