@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Edit Asset' : 'Add New Asset' }}</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="inventoryForm" class="form-container">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Article Name</mat-label>
+      <input matInput formControlName="nombreArticulo" placeholder="Enter article name">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Category</mat-label>
+      <input matInput formControlName="categoria" placeholder="Enter category">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Conservation State</mat-label>
+      <input matInput formControlName="estadoConservacion" placeholder="Enter conservation state">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Location</mat-label>
+      <input matInput formControlName="ubicacion" placeholder="Enter location">
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-flat-button color="primary" [disabled]="inventoryForm.invalid" (click)="onSubmit()">
+    Save
+  </button>
+</mat-dialog-actions>
