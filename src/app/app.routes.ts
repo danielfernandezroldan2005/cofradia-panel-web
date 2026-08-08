@@ -7,6 +7,7 @@ import { CuotaComponent } from './features/cuota/cuota.component';
 import { PapeletaComponent } from './features/papeleta/papeleta.component';
 import { DocumentoComponent } from './features/documento/documento.component';
 import { AuditoriaComponent } from './features/auditoria/auditoria.component';
+import { BiografiaComponent } from './features/biografia/biografia.component';
 
 export const routes: Routes = [
   { path: '', component: DashboardComponent }, // Added DashboardComponent's route here.
@@ -17,5 +18,6 @@ export const routes: Routes = [
   { path: 'papeletas', component: PapeletaComponent }, // Added Papeleta's route here.
   { path: 'documentos', component: DocumentoComponent }, // Added Documento's route here.
   { path: 'auditoria', component: AuditoriaComponent }, // Added Auditoria's route here.
+  { path: 'biografia', component: BiografiaComponent }, // Added Biografia's route here.
   { path: '**', redirectTo: '' },
 ];

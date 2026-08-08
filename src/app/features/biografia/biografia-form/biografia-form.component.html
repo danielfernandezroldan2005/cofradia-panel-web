@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Editar Hito Histórico' : 'Añadir Hito Histórico' }}</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="biografiaForm" class="form-container">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Título</mat-label>
+      <input matInput formControlName="titulo" placeholder="Ej. Fundación de la Cofradía">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Fecha del Hito</mat-label>
+      <input matInput type="date" formControlName="fechaHito">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Imagen URL (Opcional)</mat-label>
+      <input matInput formControlName="imagenUrl" placeholder="Ej. https://servidor.com/foto.jpg">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Contenido Histórico</mat-label>
+      <textarea matInput formControlName="contenido" rows="5" placeholder="Escriba los detalles históricos..."></textarea>
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-flat-button color="primary" [disabled]="biografiaForm.invalid" (click)="onSubmit()">
+    Guardar
+  </button>
+</mat-dialog-actions>
