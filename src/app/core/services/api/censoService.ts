@@ -31,4 +31,13 @@ export class CensoService {
   deleteHermano(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+  /**
+   * Sends a PUT request to update an existing member.
+   * @param id The ID of the member to update.
+   * @param hermano The updated data from the form.
+   */
+  updateHermano(id: number, hermano: Partial<Hermano>): Observable<Hermano> {
+    return this.http.put<Hermano>(`${this.apiUrl}/${id}`, hermano);
+  }
 }

@@ -111,4 +111,22 @@ export class Censo implements OnInit, AfterViewInit {
       });
     }
   }
+
+  /**
+   * Opens the dialog to edit an existing member.
+   * Passes the selected member's data to the dialog.
+   */
+  openEditDialog(hermano: Hermano): void {
+    const dialogRef = this.dialog.open(HermanoForm, {
+      width: '400px',
+      disableClose: true,
+      data: hermano, // Send Data to Modal.
+    });
+
+    dialogRef.afterClosed().subscribe((success: boolean) => {
+      if (success) {
+        this.loadHermanos();
+      }
+    });
+  }
 }

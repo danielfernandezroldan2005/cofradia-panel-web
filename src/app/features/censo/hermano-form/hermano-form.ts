@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { MatDialogRef, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -28,6 +28,12 @@ export class HermanoForm {
   private dialogRef = inject(MatDialogRef<HermanoForm>);
   private censoService = inject(CensoService);
 
+  // DATA INJECTION: Angular injects the member data here if opened from the "Edit" button
+  private data = inject(MAT_DIALOG_DATA, { optional: true });
+
+  isEditMode = false;
+  memberId?: number;
+
   // Form definition with strict validations
   hermanoForm: FormGroup = this.fb.group({
     nombre: ['', Validators.required],
@@ -36,20 +42,34 @@ export class HermanoForm {
     cuotaAlDia: [false],
   });
 
+  ngOnInit(): void {
+    // If data exists, it means the modal was opened in edit mode
+    if (this.data) {
+      this.isEditMode = true;
+      this.memberId = this.data.id;
+      // Angular automatically fills the inputs with the received data matching the formControlNames
+      this.hermanoForm.patchValue(this.data);
+    }
+  }
+
   /**
    * Submits the form data to the backend if all validations pass.
    */
   onSubmit(): void {
     if (this.hermanoForm.valid) {
-      this.censoService.addHermano(this.hermanoForm.value).subscribe({
-        next: () => {
-          // Close the dialog and pass 'true' to indicate success
-          this.dialogRef.close(true);
-        },
-        error: (err) => {
-          console.error('Error saving the new member:', err);
-        },
-      });
+      if (this.isEditMode && this.memberId) {
+        // EDIT MODE
+        this.censoService.updateHermano(this.memberId, this.hermanoForm.value).subscribe({
+          next: () => this.dialogRef.close(true),
+          error: (err) => console.error('Error updating member:', err),
+        });
+      } else {
+        // CREATE MODE
+        this.censoService.addHermano(this.hermanoForm.value).subscribe({
+          next: () => this.dialogRef.close(true),
+          error: (err) => console.error('Error saving member:', err),
+        });
+      }
     }
   }
 
