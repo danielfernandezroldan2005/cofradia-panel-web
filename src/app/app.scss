@@ -14,3 +14,26 @@
   padding: 2rem;
   overflow-y: auto;
 }
+
+.app-container {
+  height: 100vh;
+}
+
+.content-padding {
+  padding: 24px;
+}
+
+.sidenav {
+  width: 250px;
+  background-color: #1e293b;
+  color: #f8fafc;
+}
+
+.sidenav mat-icon,
+.sidenav .mdc-list-item__primary-text {
+  color: #e2e8f0 !important;
+}
+
+.sidenav .mat-mdc-list-item:hover {
+  background-color: #334155 !important;
+}

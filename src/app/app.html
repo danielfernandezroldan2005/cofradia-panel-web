@@ -1,9 +1,36 @@
-<div class="admin-layout">
-  <!-- Sidebar -->
-  <app-sidebar class="sidebar-area"></app-sidebar>
+<mat-sidenav-container class="app-container">
 
-  <!-- Dynamic area for uploading Dashboard, Censo, etc. -->
-  <main class="content-area">
-    <router-outlet></router-outlet>
-  </main>
-</div>
+  <!-- Menú Lateral (Sidebar) -->
+  <mat-sidenav #sidenav mode="side" opened class="sidenav">
+    <mat-toolbar color="primary">Panel Admin</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/censo">
+        <mat-icon matListItemIcon>group</mat-icon>
+        <span matListItemTitle>Censo de Hermanos</span>
+      </a>
+      <a mat-list-item routerLink="/eventos">
+        <mat-icon matListItemIcon>event</mat-icon>
+        <span matListItemTitle>Foro de Eventos</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Área de Contenido Principal -->
+  <mat-sidenav-content>
+
+    <!-- Barra superior (Header) -->
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Gestión Integral de Cofradía</span>
+    </mat-toolbar>
+
+    <!-- Contenido Dinámico (Aquí se cargan las tablas) -->
+    <div class="content-padding">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
