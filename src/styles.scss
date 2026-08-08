@@ -45,4 +45,17 @@ body {
   margin: 0;
   height: 100%;
 }
-/* You can add global styles to this file, and also import other style files */
+
+/* Added global styles to this file, and also import other style files */
+.mat-mdc-table th:last-child,
+.mat-mdc-table td:last-child {
+  width: 120px !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+  padding-right: 24px !important;
+}
+
+.mat-mdc-table td:last-child .mat-mdc-icon-button {
+  display: inline-block !important;
+  margin: 0 4px !important;
+}

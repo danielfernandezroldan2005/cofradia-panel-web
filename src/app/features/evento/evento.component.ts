@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EventoFormComponent } from './evento-form/evento-form.component';
 import { EventoService } from '../../core/services/api/evento.service';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 export interface Evento {
   id: number;
@@ -25,6 +26,7 @@ export interface Evento {
     MatFormFieldModule,
     MatPaginatorModule,
     MatButtonModule,
+    MatIcon,
   ],
   templateUrl: './evento.component.html',
   styleUrl: './evento.component.scss',

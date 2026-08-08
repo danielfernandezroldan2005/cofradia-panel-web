@@ -12,7 +12,7 @@
         </mat-form-field>
 
         <button mat-flat-button color="primary" (click)="openAddDialog()">
-          Add New Asset
+          Añadir Nuevo Enser
         </button>
       </div>
 
@@ -50,8 +50,8 @@
 
         <!-- Actions Column -->
         <ng-container matColumnDef="acciones">
-          <th mat-header-cell *matHeaderCellDef> Actions </th>
-          <td mat-cell *matCellDef="let element" style="display: flex; gap: 8px; align-items: center;">
+          <th mat-header-cell *matHeaderCellDef style="width: 120px; min-width: 120px; text-align: center;"> Acciones </th>
+          <td mat-cell *matCellDef="let element" style="width: 120px; min-width: 120px; white-space: nowrap; text-align: center;">
 
             <button mat-icon-button color="primary" (click)="openEditDialog(element)">
               <mat-icon>edit</mat-icon>
