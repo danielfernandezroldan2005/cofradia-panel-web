@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Editar Papeleta' : 'Añadir Papeleta' }}</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="papeletaForm" class="form-container">
+
+    <mat-form-field appearance="outline">
+      <mat-label>ID Hermano</mat-label>
+      <input matInput type="number" formControlName="idHermano" placeholder="Introduzca el ID del hermano">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Puesto</mat-label>
+      <mat-select formControlName="puesto">
+        <mat-option value="Nazareno">Nazareno</mat-option>
+        <mat-option value="Acólito">Acólito</mat-option>
+        <mat-option value="Costalero">Costalero</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Año</mat-label>
+      <input matInput type="number" formControlName="anio" placeholder="Ej. 2026">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Estado</mat-label>
+      <mat-select formControlName="estado">
+        <mat-option value="Emitida">Emitida</mat-option>
+        <mat-option value="Pendiente">Pendiente</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-flat-button color="primary" [disabled]="papeletaForm.invalid" (click)="onSubmit()">
+    Guardar
+  </button>
+</mat-dialog-actions>

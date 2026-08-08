@@ -1,0 +1,76 @@
+<div class="papeleta-container">
+  <h2>Papeletas de Sitio</h2>
+  <p>Listado oficial de papeletas de sitio y puestos en la procesión.</p>
+
+  <mat-card class="mat-elevation-z4">
+    <mat-card-content>
+      <!-- Header row containing Search bar and "Añadir Papeleta" button -->
+      <div class="table-header">
+        <mat-form-field appearance="outline" class="buscador-papeletas">
+          <mat-label>Buscar papeletas...</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Nazareno">
+        </mat-form-field>
+
+        <button mat-flat-button color="primary" (click)="openAddDialog()">
+          Añadir Papeleta
+        </button>
+      </div>
+
+      <table mat-table [dataSource]="dataSource">
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> Nº </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- ID Hermano Column -->
+        <ng-container matColumnDef="idHermano">
+          <th mat-header-cell *matHeaderCellDef> ID Hermano </th>
+          <td mat-cell *matCellDef="let element"> {{element.idHermano}} </td>
+        </ng-container>
+
+        <!-- Puesto Column -->
+        <ng-container matColumnDef="puesto">
+          <th mat-header-cell *matHeaderCellDef> Puesto </th>
+          <td mat-cell *matCellDef="let element"> {{element.puesto}} </td>
+        </ng-container>
+
+        <!-- Año Column -->
+        <ng-container matColumnDef="anio">
+          <th mat-header-cell *matHeaderCellDef> Año </th>
+          <td mat-cell *matCellDef="let element"> {{element.anio}} </td>
+        </ng-container>
+
+        <!-- Estado Column -->
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef> Estado </th>
+          <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef style="width: 120px; min-width: 120px; text-align: center;"> Acciones </th>
+          <td mat-cell *matCellDef="let element" style="width: 120px; min-width: 120px; white-space: nowrap; text-align: center;">
+
+            <button mat-icon-button color="primary" (click)="openEditDialog(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn" (click)="deletePapeleta(element.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+
+          </td>
+        </ng-container>
+
+        <!-- Rendering rows (Angular manages the loop automatically) -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <!-- Paginator -->
+      <mat-paginator [pageSizeOptions]="[2, 5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Editar Documento' : 'Añadir Documento' }}</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="documentoForm" class="form-container">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Título</mat-label>
+      <input matInput formControlName="titulo" placeholder="Ej. Acta del Cabildo General">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Tipo</mat-label>
+      <mat-select formControlName="tipo">
+        <mat-option value="Acta">Acta</mat-option>
+        <mat-option value="Contrato">Contrato</mat-option>
+        <mat-option value="Normativa">Normativa</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Fecha de Creación</mat-label>
+      <input matInput type="date" formControlName="fechaCreacion">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Enlace al Archivo</mat-label>
+      <input matInput formControlName="enlaceArchivo" placeholder="Ej. https://servidor.com/documento.pdf">
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-flat-button color="primary" [disabled]="documentoForm.invalid" (click)="onSubmit()">
+    Guardar
+  </button>
+</mat-dialog-actions>
