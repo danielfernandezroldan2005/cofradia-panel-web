@@ -33,5 +33,4 @@ spring.datasource.username=YOUR_USERNAME
 spring.datasource.password=YOUR_PASSWORD
 
 
-<img width="2560" height="1332" alt="imagen" src="https://github.com/user-attachments/assets/0afc02c4-104b-4fd8-a892-3411b573ee6d" />
-
+<img width="100%" alt="Panel Admin Cofradía" src="https://github.com/user-attachments/assets/0afc02c4-104b-4fd8-a892-3411b573ee6d" />
