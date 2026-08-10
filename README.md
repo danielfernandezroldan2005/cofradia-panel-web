@@ -16,6 +16,8 @@ A Full-Stack administrative management software designed for brotherhoods and re
 * **History & Biography:** Rich text editing module for historical milestones.
 * **Responsive Design:** Clean UI built with Angular Material components.
 
+<img width="100%" alt="Panel Admin Cofradía" src="https://github.com/user-attachments/assets/0afc02c4-104b-4fd8-a892-3411b573ee6d" />
+
 ## ⚙️ Prerequisites
 
 To run this project locally, you need to have the following installed:
@@ -31,6 +33,3 @@ In the `src/main/resources/application.properties` file, configure your PostgreS
 spring.datasource.url=jdbc:postgresql://localhost:5432/cofradia_db
 spring.datasource.username=YOUR_USERNAME
 spring.datasource.password=YOUR_PASSWORD
-
-
-<img width="100%" alt="Panel Admin Cofradía" src="https://github.com/user-attachments/assets/0afc02c4-104b-4fd8-a892-3411b573ee6d" />
