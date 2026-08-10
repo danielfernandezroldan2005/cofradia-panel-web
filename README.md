@@ -16,7 +16,7 @@ A Full-Stack administrative management software designed for brotherhoods and re
 * **History & Biography:** Rich text editing module for historical milestones.
 * **Responsive Design:** Clean UI built with Angular Material components.
 
-<img width="100%" alt="Panel Admin Cofradía" src="https://github.com/user-attachments/assets/0afc02c4-104b-4fd8-a892-3411b573ee6d" />
+<img width="2560" height="1336" alt="imagen" src="https://github.com/user-attachments/assets/98ec9c77-494d-4769-88ed-b9b7334c7d5c" />
 
 ## ⚙️ Prerequisites
 
