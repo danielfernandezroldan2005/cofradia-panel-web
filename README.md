@@ -31,3 +31,6 @@ In the `src/main/resources/application.properties` file, configure your PostgreS
 spring.datasource.url=jdbc:postgresql://localhost:5432/cofradia_db
 spring.datasource.username=YOUR_USERNAME
 spring.datasource.password=YOUR_PASSWORD
+
+<img width="2560" height="1332" alt="imagen" src="https://github.com/user-attachments/assets/0afc02c4-104b-4fd8-a892-3411b573ee6d" />
+
